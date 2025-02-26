@@ -13,6 +13,7 @@ export default function TimeSelector({
         <div className="inline-flex items-center rounded-md bg-white p-1.5 dark:bg-bodydark border border-gray-300">
             {times.map((time) => (
                 <button
+                    key={time}
                     className={
                         time === selected
                             ? "rounded py-1 px-3 text-xs font-medium text-black dark:text-white bg-gray-300 dark:bg-gray-600"

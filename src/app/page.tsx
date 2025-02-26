@@ -11,9 +11,11 @@ import TimeSelector from "@/components/TimeSelector";
 export default function Home() {
     const [data, setData] = useState<ICandleStick[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [time, setTime] = useState<string>("1d");
+    const [time, setTime] = useState<string>("1m");
 
     useEffect(() => {
+		if (isLoading) return;
+
         (async () => {
             setIsLoading(true);
 
@@ -24,13 +26,18 @@ export default function Home() {
         })();
     }, [time]);
 
+	const onSelectTime = (value: string) => {
+		if (isLoading) return;
+		setTime(value);
+	}
+
     return (
         <div className="mx-2 md:mx-10 my-5">
             <div className="flex justify-end mb-5">
 				<TimeSelector 
 					times={["1m", "5m", "30m", "1h", "4h", "1d"]}
 					selected={time}
-					onClick={(value: string) => setTime(value)}
+					onClick={onSelectTime}
 				/>
 			</div>
 
