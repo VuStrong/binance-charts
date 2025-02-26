@@ -23,10 +23,10 @@ export default function BinanceChart({
 
     const candlestickData = data.map((d) => ({
         ...d,
-        time: d.openTime as UTCTimestamp,
+        time: d.openTime / 1000 as UTCTimestamp,
     }));
     const histogramData = data.map((d) => ({
-        time: d.openTime as UTCTimestamp,
+        time: d.openTime / 1000 as UTCTimestamp,
         value: d.volume,
     }));
 
